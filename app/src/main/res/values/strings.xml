@@ -11,4 +11,5 @@
     -->
     <string name="hello_world">Hello Square World!</string>
     <string name="logout">logout</string>
+    <string name="warning">Unexpected Shit</string>
 </resources>
