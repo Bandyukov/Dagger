@@ -1,5 +1,6 @@
 package com.example.dagger
 
+import android.util.Log
 import androidx.annotation.Nullable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
@@ -23,6 +24,7 @@ class SessionManager @Inject constructor() {
     }
 
     fun logOut() {
+        Log.i("zxcv", "try to loggout in manager")
         cashedUser.value = AuthResource.logout()
     }
 
