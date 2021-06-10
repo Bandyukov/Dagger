@@ -1,5 +1,6 @@
 package com.example.dagger.ui.auth
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,7 @@ import android.widget.*
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.RequestManager
 import com.example.dagger.R
+import com.example.dagger.ui.main.MainActivity
 import com.example.dagger.viewmodels.ViewModelProviderFactory
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.DaggerAppCompatActivity
@@ -69,6 +71,12 @@ class AuthActivity : DaggerAppCompatActivity() {
         }
     }
 
+    private fun onLoginSuccess() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
     private fun subscribeObservers() {
         viewModel.observeAuthState().observe(this) {
             if (it != null) {
@@ -76,7 +84,7 @@ class AuthActivity : DaggerAppCompatActivity() {
                     AuthResource.AuthStatus.LOADING -> { showProgressBar(true) }
                     AuthResource.AuthStatus.AUTHENTICATED -> {
                         showProgressBar(false)
-                        Toast.makeText(this, it.data?.email, Toast.LENGTH_LONG).show()
+                        onLoginSuccess()
                         Log.i("zxcv", "AUTH SUCCESS")
                     }
                     AuthResource.AuthStatus.ERROR -> {
