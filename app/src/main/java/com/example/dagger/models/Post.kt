@@ -6,17 +6,16 @@ import com.google.gson.annotations.SerializedName
 data class Post(
     @SerializedName("userId")
     @Expose
-    private val userId: Int,
+    val userId: Int = -1,
 
     @SerializedName("id")
-    @Expose
-    private val id: Int,
+    @Expose val id: Int = -1,
 
     @SerializedName("title")
     @Expose
-    private val title: String,
+    val title: String = String(),
 
     @SerializedName("body")
     @Expose
-    private val body: String
+    val body: String = String()
 )

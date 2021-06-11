@@ -1,6 +1,7 @@
 package com.example.dagger.ui.main.post
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,11 +32,27 @@ class PostFragment : DaggerFragment() {
             false
         )
 
+
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this, factory).get(PostViewModel::class.java)
+
+        subscribeObservers()
+    }
+
+    private fun subscribeObservers() {
+        viewModel.observePost().removeObservers(viewLifecycleOwner)
+        viewModel.observePost().observe(viewLifecycleOwner) {
+            if (it != null) {
+                Log.i("zxcv", "SUCCESS!!!")
+                it.data?.map { post ->
+                    Log.i("zxcv", post.title)
+                }
+            }
+        }
     }
 }

@@ -24,7 +24,6 @@ class SessionManager @Inject constructor() {
     }
 
     fun logOut() {
-        Log.i("zxcv", "try to loggout in manager")
         cashedUser.value = AuthResource.logout()
     }
 
